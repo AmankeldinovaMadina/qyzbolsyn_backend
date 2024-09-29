@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 MONGO_DB_URL = os.getenv("MONGO")
-client = None
+client = AsyncIOMotorClient(MONGO_DB_URL, tls=True, tlsAllowInvalidCertificates=True)
 
 def connect_to_mongo():
     global client
