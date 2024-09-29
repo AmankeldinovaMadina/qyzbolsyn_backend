@@ -11,3 +11,12 @@ connect_to_mongo()
 # Include the posts router
 app.include_router(posts_router)
 app.include_router(podcasts_router) 
+
+
+@app.get("/")
+def root():
+    return {"message": "Welcome to the FastAPI app"}
+
+@app.get("/health")
+def health_check():
+    return {"status": "ok"}
