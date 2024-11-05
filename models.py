@@ -16,3 +16,13 @@ class Podcast(BaseModel):
     author: str
     description: str
     timecode: str
+
+
+
+class User(BaseModel):
+    email: str
+    password: str = None  # Optional in case of Google or Apple login
+
+
+class MessageRequest(BaseModel):
+    message: str
