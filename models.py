@@ -8,6 +8,7 @@ class HeadlineTextPair(BaseModel):
 class Post(BaseModel):
     title: str
     author: str
+    category: str
     content: List[HeadlineTextPair]
 
 class Podcast(BaseModel):

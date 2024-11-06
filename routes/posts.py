@@ -1,5 +1,5 @@
 from fastapi import APIRouter, HTTPException
-from models import Post
+from models import Post  # Make sure to import the updated Post model
 from database import get_database
 from bson import ObjectId
 
