@@ -5,6 +5,10 @@ class HeadlineTextPair(BaseModel):
     headline: str
     text: str
 
+class TimecodePair(BaseModel):
+    time: str
+    label: str
+
 class Post(BaseModel):
     title: str
     author: str
@@ -15,8 +19,10 @@ class Podcast(BaseModel):
     title: str
     url: str
     author: str
+    category: str
     description: str
-    timecode: str
+    timecode: List[TimecodePair]
+    video_length: str
 
 
 
