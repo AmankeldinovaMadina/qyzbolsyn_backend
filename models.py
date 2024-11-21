@@ -46,3 +46,9 @@ class Talk(BaseModel):
     question: str
     answers: List[Answer] = []
     created_at: Optional[datetime] = Field(default_factory=datetime.utcnow)
+
+
+
+class Category(BaseModel):
+    key: str  # Unique identifier for the category (e.g., 'health', 'education')
+    value: str  
