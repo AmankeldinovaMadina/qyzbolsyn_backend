@@ -1,5 +1,6 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 from typing import List, Optional
+from datetime import datetime
 
 class HeadlineTextPair(BaseModel):
     headline: str
@@ -33,3 +34,15 @@ class User(BaseModel):
 
 class MessageRequest(BaseModel):
     message: str
+
+
+class Answer(BaseModel):
+    username: str
+    bodyMsg: str
+    created_at: Optional[datetime] = Field(default_factory=datetime.utcnow)
+
+
+class Talk(BaseModel):
+    question: str
+    answers: List[Answer] = []
+    created_at: Optional[datetime] = Field(default_factory=datetime.utcnow)
