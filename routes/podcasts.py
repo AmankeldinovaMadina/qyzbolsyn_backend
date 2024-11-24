@@ -19,6 +19,16 @@ async def create_podcast(podcast: Podcast):
         return created_podcast
     raise HTTPException(status_code=500, detail="Podcast could not be created")
 
+# Endpoint to get the latest podcast
+@router.get("/podcasts/latest")
+async def get_latest_podcast():
+    db = get_database()
+    latest_podcast = await db.podcasts.find().sort("created_at", -1).limit(1).to_list(length=1)
+    if latest_podcast:
+        latest_podcast[0]["_id"] = str(latest_podcast[0]["_id"])
+        return latest_podcast[0]
+    raise HTTPException(status_code=404, detail="No podcasts found")
+
 # Endpoint to get all podcasts
 @router.get("/podcasts/")
 async def get_all_podcasts():
@@ -38,12 +48,4 @@ async def get_podcast_by_id(podcast_id: str):
         return podcast
     raise HTTPException(status_code=404, detail="Podcast not found")
 
-# Endpoint to get the latest podcast
-@router.get("/podcasts/latest")
-async def get_latest_podcast():
-    db = get_database()
-    latest_podcast = await db.podcasts.find().sort("created_at", -1).limit(1).to_list(length=1)
-    if latest_podcast:
-        latest_podcast[0]["_id"] = str(latest_podcast[0]["_id"])
-        return latest_podcast[0]
-    raise HTTPException(status_code=404, detail="No podcasts found")
+
