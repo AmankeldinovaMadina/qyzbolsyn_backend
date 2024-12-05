@@ -5,8 +5,6 @@ from routes.podcasts import router as podcasts_router
 from routes.affirmation import router as affirmations_router
 from routes.talk import router as talks_router
 from routes.categories import router as categories_router
-from threading import Thread  # Import Thread here
-import requests
 import time
 
 app = FastAPI()
