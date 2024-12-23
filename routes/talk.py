@@ -23,7 +23,15 @@ async def create_talk(talk: Talk):
         return created_talk
     raise HTTPException(status_code=500, detail="Talk could not be created")
 
-
+# Endpoint to get the last talk
+@router.get("/talks/last")
+async def get_last_talk():
+    db = get_database()
+    last_talk = await db.talks.find_one(sort=[("created_at", -1)])
+    if last_talk:
+        last_talk["_id"] = str(last_talk["_id"])
+        return last_talk
+    raise HTTPException(status_code=404, detail="No talks found")
 
 # Endpoint to get all talks
 @router.get("/talks/")
